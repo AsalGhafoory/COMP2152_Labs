@@ -1,6 +1,6 @@
 # ============================================================
-#  WEEK 09 LAB — Q3: UNIT TESTING
-#  COMP2152 — [Your Name Here]
+#  WEEK 09 LAB — Q3: UNIT TESTING (SOLUTION)
+#  COMP2152
 # ============================================================
 
 import unittest
@@ -36,30 +36,38 @@ def fizzbuzz(n):
     return str(n)
 
 
-# TODO: Complete TestCelsius
-#   test_freezing  → celsius_to_fahrenheit(0)   == 32.0
-#   test_boiling   → celsius_to_fahrenheit(100) == 212.0
-#   test_negative  → celsius_to_fahrenheit(-40) == -40.0
+# ANSWER: TestCelsius
 class TestCelsius(unittest.TestCase):
-    pass
+    def test_freezing(self):
+        self.assertEqual(celsius_to_fahrenheit(0), 32.0)
+    def test_boiling(self):
+        self.assertEqual(celsius_to_fahrenheit(100), 212.0)
+    def test_negative(self):
+        self.assertEqual(celsius_to_fahrenheit(-40), -40.0)
 
 
-# TODO: Complete TestValidIP
-#   test_valid         → is_valid_ip("192.168.1.1") is True
-#   test_invalid_octet → is_valid_ip("256.1.1.1")   is False
-#   test_too_few_parts → is_valid_ip("1.2.3")       is False
-#   test_empty         → is_valid_ip("")            is False
+# ANSWER: TestValidIP
 class TestValidIP(unittest.TestCase):
-    pass
+    def test_valid(self):
+        self.assertTrue(is_valid_ip("192.168.1.1"))
+    def test_invalid_octet(self):
+        self.assertFalse(is_valid_ip("256.1.1.1"))
+    def test_too_few_parts(self):
+        self.assertFalse(is_valid_ip("1.2.3"))
+    def test_empty(self):
+        self.assertFalse(is_valid_ip(""))
 
 
-# TODO: Complete TestFizzBuzz
-#   test_fizz     → fizzbuzz(3)  == "Fizz"
-#   test_buzz     → fizzbuzz(5)  == "Buzz"
-#   test_fizzbuzz → fizzbuzz(15) == "FizzBuzz"
-#   test_number   → fizzbuzz(7)  == "7"
+# ANSWER: TestFizzBuzz
 class TestFizzBuzz(unittest.TestCase):
-    pass
+    def test_fizz(self):
+        self.assertEqual(fizzbuzz(3), "Fizz")
+    def test_buzz(self):
+        self.assertEqual(fizzbuzz(5), "Buzz")
+    def test_fizzbuzz(self):
+        self.assertEqual(fizzbuzz(15), "FizzBuzz")
+    def test_number(self):
+        self.assertEqual(fizzbuzz(7), "7")
 
 
 if __name__ == "__main__":

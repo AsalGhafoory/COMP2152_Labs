@@ -1,29 +1,35 @@
 # ============================================================
-#  WEEK 09 LAB — Q2: SEQUENTIAL vs THREADED EXECUTION
-#  COMP2152 — [Your Name Here]
+#  WEEK 09 LAB — Q2: SEQUENTIAL vs THREADED EXECUTION (SOLUTION)
+#  COMP2152
 # ============================================================
 
 import time
 import threading
 
 
-# TODO: Complete simulate_task(name, duration, lock)
-#   1. lock.acquire(), print(f"[START] {name}"), lock.release()
-#   2. time.sleep(duration)
-#   3. lock.acquire(), print(f"[DONE]  {name} ({duration}s)"), lock.release()
+# ANSWER: simulate_task
 def simulate_task(name, duration, lock):
-    pass
+    lock.acquire()
+    print(f"[START] {name}")
+    lock.release()
+
+    time.sleep(duration)
+
+    lock.acquire()
+    print(f"[DONE]  {name} ({duration}s)")
+    lock.release()
 
 
-# TODO: Complete run_threaded(tasks, lock)
-#   1. Create an empty list: threads = []
-#   2. For each (name, duration) in tasks:
-#        t = threading.Thread(target=simulate_task, args=(name, duration, lock))
-#        threads.append(t)
-#   3. Loop to start all threads
-#   4. Loop to join  all threads  (separate loop!)
+# ANSWER: run_threaded
 def run_threaded(tasks, lock):
-    pass
+    threads = []
+    for name, duration in tasks:
+        t = threading.Thread(target=simulate_task, args=(name, duration, lock))
+        threads.append(t)
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
 
 
 # --- Provided below — error handling example from Week 06 ---
